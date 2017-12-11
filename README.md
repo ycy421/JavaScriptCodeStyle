@@ -1,5 +1,50 @@
 # JavaScript Style Guide() {  
 
+## 快速纠错版
+  - **jquery ajax**
+  - 
+    使用jquery ajax进行请求时，记得要指定 dataType:"json"，如果不指定，success函数里的'data'不会自动解析成JSON成JS对象；
+
+    假设由于种种原因需要手动把JSON文本转换成JSON对象，请使用JSON.stringify()，避免使用eval，如果一定要使用eval，请说明理由。
+
+  - 操作DOM时，发现问题，首先排查问题代码运行那一时刻，要操作的DOM元素是否已经存在、存在状态是否符合预期！
+
+  - 变量声明会提升，但是赋值不会提升。（具体参考‘提升’章节） 为了避免混淆和意外，请在作用域的最开始声明变量，赋值可以在   需要的地方进行！
+
+  - 发生运算问题时，首先检查参与运算的各个变量的类型，是否符合预期，避免下列问题。
+
+    ```javascript
+      var a = 1;
+      var b = '1';
+      console.log(a+b); // => 11
+    ```
+
+  - **html标签描述**
+
+    ```html
+      //bad
+      <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+
+      //good
+      <!DOCTYPE html>
+    ```    
+
+  - **js脚本引用位置**
+    统一在body标签的最后引用
+
+      ```html
+        <body>
+          <!--otherCode-->
+          <!--otherCode-->
+          <!--otherCode-->
+          <script src=''></script>
+          <script>
+            console.log('hello world');
+          </script>
+        </body> 
+        
+      ```  
+ 
 ## <a name="table-of-contents">目录</a>
 
   1. [类型](#types)
@@ -22,6 +67,7 @@
   1. [事件](#events)
   1. [模块](#modules)
   1. [jQuery](#jquery)
+  1. [js脚本引用优化](#importJs)
 
 ## <a name="types">类型</a>
 
@@ -308,8 +354,6 @@
 
 **[⬆ 回到顶部](#table-of-contents)**
 
-
-
 ## <a name="properties">属性</a>
 
   - 使用 `.` 来访问对象的属性。
@@ -463,6 +507,17 @@
       return true;
     }
     ```
+  - null和undefined的区别	
+    - null表示"没有对象"，即该处不应该有值。典型用法是：
+    - undefined表示"缺少值"，就是此处应该有一个值，但是还没有定义。
+  - 解释上如此，但是实际使用中区分别不多，例如：
+
+    ```javascript
+    var a;
+    typeof a; // => 'undefined'
+    typeof b; // => 'undefined'
+
+    ```
 
 **[⬆ 回到顶部](#table-of-contents)**
 
@@ -554,6 +609,9 @@
 ## <a name="comparison-operators--equality">比较运算符 & 等号</a>
 
   - 优先使用 `===` 和 `!==` 而不是 `==` 和 `!=`.
+
+  - *(当可以确定类型或者始终手动转型的情况下建议使用 ‘===’ 类型的写法，这样可以确保比较值的类型相同，避免奇怪的bug。但也不要滥用，例如直接把已有项目的‘==’直接换成‘===’，估计程序会直接挂掉)*
+
   - 条件表达式例如 `if` 语句通过抽象方法 `ToBoolean` 强制计算它们的表达式并且总是遵守下面的规则：
 
     + **对象** 被计算为 **true**
@@ -1309,6 +1367,13 @@
     // good
     $sidebar.find('ul').hide();
     ```
+
+**[⬆ 回到顶部](#table-of-contents)**
+
+## <a name="importJs">js引入优化</a>
+
+  - 脚本要放到body标签的底部，从而减少对整个页面其他资源（DOM，CSS，图片等显示资源）下载的影响。
+  - 时刻牢记，将脚本放在底部！
 
 **[⬆ 回到顶部](#table-of-contents)**
 
