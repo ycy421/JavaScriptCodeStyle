@@ -5,7 +5,7 @@
   
     - 使用jquery ajax进行请求时，记得要指定 dataType:"json"，如果不指定，success函数里的'data'不会自动解析成JSON成JS对象；
 
-    - 假设由于种种原因需要手动把JSON文本转换成JS对象，请使用JSON.stringify()，避免使用eval()，如果一定要使用eval()，请说明理由。
+    - 假设由于种种原因需要手动把JSON文本转换成JS对象，请使用JSON.parse()，避免使用eval()，如果一定要使用eval()，请说明理由。
 
   - 操作DOM时，发现问题，首先排查问题代码运行那一时刻，要操作的DOM元素是否已经存在、存在状态是否符合预期！
 
