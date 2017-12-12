@@ -5,11 +5,11 @@
   
     - 使用jquery ajax进行请求时，记得要指定 dataType:"json"，如果不指定，success函数里的'data'不会自动解析成JSON成JS对象；
 
-    - 假设由于种种原因需要手动把JSON文本转换成JSON对象，请使用JSON.stringify()，避免使用eval，如果一定要使用eval，请说明理由。
+    - 假设由于种种原因需要手动把JSON文本转换成JS对象，请使用JSON.stringify()，避免使用eval()，如果一定要使用eval()，请说明理由。
 
   - 操作DOM时，发现问题，首先排查问题代码运行那一时刻，要操作的DOM元素是否已经存在、存在状态是否符合预期！
 
-  - 变量声明会提升，但是赋值不会提升。（具体参考‘提升’章节） 为了避免混淆和意外，请在作用域的最开始声明变量。赋值则可以在需要的地方进行。
+  - 变量声明会提升，但是赋值不会提升。（具体参考‘提升’章节） 为了避免混淆和意外，建议在作用域的最开始声明变量。赋值则可以在需要的地方进行。
 
   - 循环块和条件块在js中并不是作用域，所以不要在其内部声明变量，在其内部的变量声明都会被提升到作用域顶端，只会造成迷惑，没有意义。理想的做法是：在循环块和条件块外声明变量，然后在循环块和条件块内部仅仅赋值。
 
@@ -25,7 +25,7 @@
       Boolean(b); // => true
     ```  
 
-  - 发生运算问题时，首先检查参与运算的各个变量的类型，是否符合预期，避免下列问题。
+  - 运算出现问题时，首先检查参与运算的各个变量的类型，是否符合预期，避免下列问题。
 
     ```javascript
       var a = 1;
@@ -36,10 +36,10 @@
   - **html标签描述**
 
     ```html
-      //bad
+      //bad jsp自动生成的
       <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
 
-      //good
+      //good h5规范
       <!DOCTYPE html>
     ```    
 
@@ -47,6 +47,20 @@
     统一在body标签的最后引用
 
       ```html
+        <!--bad-->
+        <header>
+          <script src=''></script>
+          <script>
+            console.log('hello world');
+          </script>          
+        </header>
+        <body>
+          <!--otherCode-->
+          <!--otherCode-->
+          <!--otherCode-->
+        </body> 
+        
+        <!--good-->
         <body>
           <!--otherCode-->
           <!--otherCode-->
