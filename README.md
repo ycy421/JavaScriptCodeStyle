@@ -59,7 +59,7 @@
           <!--otherCode-->
           <!--otherCode-->
         </body> 
-        
+
         <!--good-->
         <body>
           <!--otherCode-->
@@ -1414,7 +1414,6 @@
 
     - 循环内定义变量和函数
     - 函数内部嵌套定义函数（闭包）
-    - 
 
 **[⬆ 回到顶部](#table-of-contents)**
 
