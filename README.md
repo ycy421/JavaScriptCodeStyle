@@ -1,6 +1,6 @@
 # JavaScript Style Guide()  
 
-## 快速纠错版
+## 快速纠错
   - **jquery ajax**
   
     - 使用jquery ajax进行请求时，记得要指定 dataType:"json"，如果不指定，success函数里的'data'不会自动解析成JSON成JS对象；
@@ -44,6 +44,8 @@
         </body> 
         
       ```  
+      
+## 完整内容 
  
 ## <a name="table-of-contents">目录</a>
 
