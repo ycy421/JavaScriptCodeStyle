@@ -1,4 +1,4 @@
-# JavaScript Style Guide() {  
+# JavaScript Style Guide()  
 
 ## 快速纠错版
   - **jquery ajax**
@@ -1377,4 +1377,4 @@
 
 **[⬆ 回到顶部](#table-of-contents)**
 
-# };
+#;
