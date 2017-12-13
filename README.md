@@ -1056,29 +1056,29 @@
 
   > Edition 5 clarifies the fact that a trailing comma at the end of an ArrayInitialiser does not add to the length of the array. This is not a semantic change from Edition 3 but some implementations may have previously misinterpreted this.
 
-    ```javascript
-    // bad
-    var hero = {
-      firstName: 'Kevin',
-      lastName: 'Flynn',
-    };
+  ```javascript
+  // bad
+  var hero = {
+    firstName: 'Kevin',
+    lastName: 'Flynn',
+  };
 
-    var heroes = [
-      'Batman',
-      'Superman',
-    ];
+  var heroes = [
+    'Batman',
+    'Superman',
+  ];
 
-    // good
-    var hero = {
-      firstName: 'Kevin',
-      lastName: 'Flynn'
-    };
+  // good
+  var hero = {
+    firstName: 'Kevin',
+    lastName: 'Flynn'
+  };
 
-    var heroes = [
-      'Batman',
-      'Superman'
-    ];
-    ```
+  var heroes = [
+    'Batman',
+    'Superman'
+  ];
+  ```
 
 **[⬆ 回到顶部](#table-of-contents)**
 
@@ -1225,20 +1225,6 @@
     var good = new User({
       name: 'yup'
     });
-    ```
-
-  - 不要使用下划线前/后缀。
-
-  > 为什么？JavaScript 并没有私有属性或私有方法的概念。虽然使用下划线是表示「私有」的一种共识，但实际上这些属性是完全公开的，它本身就是你公共接口的一部分。这种习惯或许会导致开发者错误的认为改动它不会造成破坏或者不需要去测试。长话短说：如果你想要某处为「私有」，它必须不能是显式提出的。
-
-    ```javascript
-    // bad
-    this.__firstName__ = 'Panda';
-    this.firstName_ = 'Panda';
-    this._firstName = 'Panda';
-
-    // good
-    this.firstName = 'Panda';
     ```
 
   - 给函数命名。这在做堆栈轨迹时很有帮助 *(非必须)*。
