@@ -1,4 +1,4 @@
-# JavaScript Style Guide
+# JavaScript(ECMAScript5) Style Guide
 
 ## 快速纠错
   - **jquery ajax**
