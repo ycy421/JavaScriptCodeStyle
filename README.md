@@ -94,8 +94,6 @@
   1. [类型转化](#type-casting--coercion)
   1. [命名规则](#naming-conventions)
   1. [构造函数](#constructors)
-  1. [事件](#events)
-  1. [模块](#modules)
   1. [jQuery](#jquery)
   1. [js脚本引用优化](#importJs)
   1. [性能](#performance)
