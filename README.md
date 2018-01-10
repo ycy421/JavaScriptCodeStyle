@@ -1,5 +1,6 @@
 # JavaScript(ECMAScript5) Style Guide
 
+test
 ## 快速纠错
   - **jquery ajax**
   
