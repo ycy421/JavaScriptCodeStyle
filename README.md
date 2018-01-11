@@ -1,6 +1,5 @@
 # JavaScript(ECMAScript5) Style Guide
 
-test
 ## 快速纠错
   - **jquery ajax**
   
@@ -98,6 +97,7 @@ test
   1. [jQuery](#jquery)
   1. [js脚本引用优化](#importJs)
   1. [性能](#performance)
+  1. [安全](#safe)
 
 ## <a name="types">类型</a>
 
@@ -537,7 +537,7 @@ test
       return true;
     }
     ```
-  - null和undefined的区别	
+  - null和undefined的区别    
     - null表示"没有对象"，即该处不应该有值。典型用法是：
     - undefined表示"缺少值"，就是此处应该有一个值，但是还没有定义。
   - 解释上如此，但是实际使用中区分别不多，例如：
@@ -1400,5 +1400,63 @@ test
     - 循环内定义变量和函数
     - 函数内部嵌套定义函数（闭包）
 
+**[⬆ 回到顶部](#table-of-contents)**
+
+## <a name="safe">安全</a>
+
+  - **防止SQL注入**
+ 
+    - URL地址防注入。
+
+      ```javascript
+      var sUrl=location.search.toLowerCase();
+      var sQuery=sUrl.substring(sUrl.indexOf("=")+1);
+      re=/select|update|delete|truncate|join|union|exec|insert|drop|count|'|"|;|>|<|%/i;
+      if(re.test(sQuery)){
+        alert('请勿输入非法字符');
+        location.href=sUrl.replace(sQuery,'');
+      }
+      ```
+
+    - 输入文本框防注入。      
+      在需要防注入的输入文本框添加如下方法 txtName.Attributes.Add("onblur", "AntiSqlValid(this)")。
+     
+      ```javascript
+      function AntiSqlValid(oField ){
+        re= /select|update|delete|exec|count|'|"|=|;|>|<|%/i;
+        if ( re.test(oField.value) ){
+      //alert("请您不要在参数中输入特殊字符和SQL关键字！"); //注意中文乱码
+        oField.value = '';
+        oField.className='errInfo';
+        oField.focus();
+        return false;
+      }
+      ```
+
+  - **防止XSS攻击**
+
+      原则：不相信客户输入的数据
+
+      注意:  攻击代码不一定在script标签中
+
+    - 使用XSS Filter。
+    ```javascript
+        输入过滤，对用户提交的数据进行有效性验证，仅接受指定长度范围内并符合我们期望格式的的内容提交，阻止或者忽略除此外的其他任何数据。比如：电话号码必须是数字和中划线组成，而且要设定长度上限。
+
+        过滤一些些常见的敏感字符，例如：< > ‘ “ & # \ javascript expression  "onclick="  "onfocus"；过滤或移除特殊的Html标签， 例如: <script>,<iframe> ,  &lt; for <, &gt; for >, &quot for；
+
+        过滤JavaScript 事件的标签，例如 "onclick=", "onfocus" 等等。
+
+        输出编码，当需要将一个字符串输出到Web网页时，同时又不确定这个字符串中是否包括XSS特殊字符（如< > &‘”等），为了确保输出内容的完整性和正确性，可以使用编码（HTMLEncode）进行处理。
+    ```
+    - DOM型的XSS攻击防御
+    ```javascript
+        把变量输出到页面时要做好相关的编码转义工作，如要输出到 <script>中，可以进行JS编码；要输出到HTML内容或属性，则进行HTML编码处理。根据不同的语境采用不同的编码处理方式。
+    ```
+    - HttpOnly Cookie
+    ```javascript
+        将重要的cookie标记为http only,这样的话当浏览器向Web服务器发起请求的时就会带上cookie字段，但是在脚本中却不能访问这个cookie，这样就避免了XSS攻击利用JavaScript的document.cookie获取cookie。
+    ```
+     
 **[⬆ 回到顶部](#table-of-contents)**
 
